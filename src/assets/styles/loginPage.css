@@ -1,0 +1,67 @@
+.main {
+  display: flex;
+}
+
+.log-sign-right {
+  height: 90vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.signin-left {
+  background-image: url("../images/signin.jpg");
+  height: 90vh;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-left {
+  background-image: url("../images/login.jpg");
+  height: 90vh;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+  background-color: #f3f2f2 !important;
+  border: none !important;
+  padding: 8px 10px !important;
+  width: 100%;
+  border: 2px solid black !important;
+  font-size: 20px !important;
+  transition: all 0.3s linear;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border: 2px solid rgb(5, 178, 178) !important;
+  box-shadow: 0 0 0px;
+  font-size: 20px;
+}
+
+button {
+  width: 200px;
+}
+
+form a {
+  color: #007bff !important;
+  text-decoration: underline !important;
+}
+
+form a:hover {
+  color: #0167d4 !important;
+}
+
+@media screen and (max-width: 756px) {
+  .signin-left,
+  .login-left {
+    display: none;
+  }
+}

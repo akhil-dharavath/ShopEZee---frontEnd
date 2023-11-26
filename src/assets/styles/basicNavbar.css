@@ -1,0 +1,38 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.firstHeader {
+  display: flex;
+}
+
+.secondHeader {
+  display: flex;
+}
+
+a {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 10px !important;
+}
+
+.offcanvas-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-toggler{
+  max-width: 50px;
+}
+
+@media (max-width: 992px) {
+  a {
+    color: black !important;
+  }
+  .offcanvas-body {
+    flex-direction: column;
+    justify-content: start;
+  }
+}
