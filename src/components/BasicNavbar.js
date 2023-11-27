@@ -1,33 +1,13 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import { Nav, Navbar, Offcanvas, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "../assets/styles/basicNavbar.css";
-import { useEffect, useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
+// import { Menu, MenuItem } from "@mui/material";
 import React from "react";
 import SimpleDialog from "./CartSidebar";
 
 function OffcanvasExample() {
-  const [navbarHeight, setNavbarHeight] = useState(0);
-
-  useEffect(() => {
-    const navbar = document.querySelector(".navbar");
-    if (navbar) {
-      setNavbarHeight(navbar.offsetHeight);
-    }
-  }, []);
-
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -40,7 +20,7 @@ function OffcanvasExample() {
   };
 
   return (
-    <div style={{ marginBottom: navbarHeight }}>
+    <div>
       <Navbar
         expand={"lg"}
         className="mb-3"
@@ -60,7 +40,7 @@ function OffcanvasExample() {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
-                ShopEZee
+                <Link to="/">ShopEZee</Link>
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
@@ -81,44 +61,17 @@ function OffcanvasExample() {
                   <ShoppingCartIcon />
                 </Link>
                 <SimpleDialog open={open} onClose={handleClose} />
-                <Link onClick={handleOpenUserMenu}>
+                <Link to="/view-profile">
                   <PersonIcon />
                 </Link>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Link className="text-dark p-0  w-100" to="/login">
-                      Logout
-                    </Link>
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Link
-                      className="text-dark p-0  w-100"
-                      to="/view-profile"
-                    >
-                      View Profile
-                    </Link>
-                  </MenuItem>
-                </Menu>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }

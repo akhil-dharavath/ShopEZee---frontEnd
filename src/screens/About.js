@@ -1,6 +1,6 @@
 import React from "react";
-import About1 from "../assets/images/about1.jpeg";
 import OurTeamProfile from "../components/OurTeamProfile";
+import About1 from "../assets/images/about1.jpeg";
 import Profile1 from "../assets/images/profile1.jpeg";
 import Profile2 from "../assets/images/profile2.jpeg";
 import Profile3 from "../assets/images/profile3.jpeg";
@@ -11,7 +11,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
-import Specifications from "../pages/Specifications";
+import Specifications from "../components/Specifications";
 
 const About = () => {
   return (

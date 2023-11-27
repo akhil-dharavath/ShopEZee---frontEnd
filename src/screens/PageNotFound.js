@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const PageNotFound = () => {
-  const [navbarHeight, setNavbarHeight] = useState(0);
-
+  const location = useLocation();
   useEffect(() => {
-    const navbar = document.querySelector(".navbar");
-    if (navbar) {
-      setNavbarHeight(navbar.offsetHeight);
-    }
-  }, []);
+    document.querySelector('.footer').style.display = 'none';
+  }, [location]);
+
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: navbarHeight,
+        textAlign: "center",
+        marginTop:"20%"
       }}
     >
       <h1>Page Not Found</h1>
+      <Link to='/' role="button" className="btn btn-primary mt-5">Go to HomePage</Link>
     </div>
   );
 };

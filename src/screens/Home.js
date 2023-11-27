@@ -1,36 +1,100 @@
-import React from "react";
-import FeaturedProducts from "../pages/FeaturedProducts";
-import Offers from "../pages/Offers";
-import Clients from "../pages/Clients";
-import Boat from "../assets/images/boat_logo.png";
-import Buffalo from "../assets/images/buffalo_logo.png";
-import CalvinKlein from "../assets/images/Calvin_Klein_logo.png";
-import FlyingMachine from "../assets/images/flying_machine_logo.png";
-import Iphone from "../assets/images/iPhone_Logo.png";
-import Levis from "../assets/images/levis_logo.webp";
-import OnePlus from "../assets/images/OnePlus_logo.png";
-import Samsung from "../assets/images/samsung_logo.png";
-import LimitedTimeOffer from "../pages/LimitedTimeOffer";
-import Specifications from "../pages/Specifications";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+import {
+  boat_logo,
+  buffalo_logo,
+  calvin_Klein_logo,
+  flying_machine_logo,
+  iphone_logo,
+  levis_logo,
+  one_plus_logo,
+  samsung_logo,
+} from "../routes/ImgRouters";
+
+import Specifications from "../components/Specifications";
+import BasicCard from "../components/BasicCard";
 
 const Home = () => {
+  const [display, setDisplay] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    location.pathname === "/" ? setDisplay(true) : setDisplay(false);
+  }, [location]);
+
+  useEffect(() => {
+    display && (document.querySelector(".footer").style.display = "block");
+  }, [display]);
+
   const logos = [
-    { url: Boat },
-    { url: Buffalo },
-    { url: CalvinKlein },
-    { url: FlyingMachine },
-    { url: Iphone },
-    { url: Levis },
-    { url: OnePlus },
-    { url: Samsung },
+    { url: boat_logo },
+    { url: buffalo_logo },
+    { url: calvin_Klein_logo },
+    { url: flying_machine_logo },
+    { url: iphone_logo },
+    { url: levis_logo },
+    { url: one_plus_logo },
+    { url: samsung_logo },
   ];
 
+  const scrollRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -200, behavior: "smooth" }); // Adjust scroll distance
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 200, behavior: "smooth" }); // Adjust scroll distance
+    }
+  };
+
   return (
-    <div>
-      <Offers />
-      <Clients logos={logos} />
-      <FeaturedProducts />
-      <LimitedTimeOffer />
+    <div style={{ display: display ? "block" : "none" }}>
+      <div className="offers">
+        <h1>Raining Offers For Hot Summer!</h1>
+        <h3>25% Off On All Products</h3>
+        <div>
+          <Link to="/products" className="z-2">
+            <button>Shop Now</button>
+          </Link>
+          <Link to="/products" className="z-2">
+            <button>Find More</button>
+          </Link>
+        </div>
+      </div>
+      <div className="logo-container">
+        <div className="logos" ref={scrollRef}>
+          {logos.map((logo, index) => (
+            <div className="logo" key={index}>
+              <img src={logo.url} alt={`Client ${index + 1} Logo`} />
+            </div>
+          ))}
+        </div>
+        <button className="scroll-btn prev-btn" onClick={scrollLeft}>
+          &lt;
+        </button>
+        <button className="scroll-btn next-btn" onClick={scrollRight}>
+          &gt;
+        </button>
+      </div>
+      <div className="feturedProducts">
+        <h1 className="feturedProductsHeading">Featured Products</h1>
+        <div className="divider" />
+        <div className="row cards mt-5">
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+          <BasicCard />
+        </div>
+      </div>
       <Specifications />
     </div>
   );

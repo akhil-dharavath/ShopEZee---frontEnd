@@ -1,26 +1,29 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BasicNavbar from "./components/BasicNavbar";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import Home from "./screens/Home";
-import Everything from "./screens/Everything";
-import ShoppingCart from "./screens/ShoppingCart";
-import Product from "./screens/Product";
-import About from "./screens/About";
-import ContactUs from "./screens/ContactUs";
-import Footer from "./components/Footer";
-import PageNotFound from "./screens/PageNotFound";
+// import { useState } from "react";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import BasicNavbar from "./components/BasicNavbar";
+// import Login from "./screens/Login";
+// import Register from "./screens/Register";
+// import Home from "./screens/Home";
+// import Everything from "./screens/Everything";
+// import ShoppingCart from "./screens/ShoppingCart";
+// import Product from "./screens/Product";
+// import About from "./screens/About";
+// import ContactUs from "./screens/ContactUs";
+// import Footer from "./components/Footer";
+// import PageNotFound from "./screens/PageNotFound";
+// import ViewProfile from "./screens/ViewProfile";
+// import ScrollToTop from "./components/ScrollToTop";
+import Routing from './routes'
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ViewProfile from "./screens/ViewProfile";
 
 function App() {
-  const [showFooter,setShowFooter]=useState(true);
+  // const [showFooter,setShowFooter]=useState(true);
   
   return (
     <>
-      <Router>
+      {/* <Router>
+        <ScrollToTop />
         <BasicNavbar />
         <Routes>
           <Route index element={<Home />} />
@@ -38,7 +41,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         {showFooter && <Footer />}
-      </Router>
+      </Router> */}
+      <Routing/>
     </>
   );
 }

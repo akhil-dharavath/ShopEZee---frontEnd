@@ -1,84 +1,70 @@
 import React, { lazy } from "react";
-import Home from "../screens/Home";
-import Everything from "../screens/Everything";
-
-// const MainPage = lazy(() => import('../app/Layout/DefaultLayout'))
-
-// const DashBoardPage = lazy(() => import('../pages/MainPage/Main/Dashboard/jobs_dashboard'))
-
-const JobPage = lazy(() => import('../pages/MainPage/Administration/Jobs/requisition'))
-const JobDetails = lazy(() => import('../pages/MainPage/Administration/Jobs/jobdetails'))
-const AddJobs = lazy(() => import('../pages/MainPage/Administration/Jobs/create-requisition'))
-const EditJob = lazy(() => import('../pages/MainPage/Administration/Jobs/update-requisition'))
-
-const CandidatePage = lazy(() => import('../pages/MainPage/Administration/Jobs/candidatelist'))
-const CandidateDetails = lazy(() => import('../pages/MainPage/Administration/Jobs/candidateprofile'))
-const AddCandidate = lazy(() => import('../pages/MainPage/Administration/Jobs/create_candidate'))
-const EditCandidate = lazy(() => import('../pages/MainPage/Administration/Jobs/update-candidate'))
-
-const ManageResumesPage = lazy(() => import('../pages/MainPage/Administration/Jobs/manageresumes'))
-
-const ErrorPage = lazy(() => import('../pages/MainPage/Pages/ErrorPage/error404'))
+const MarginTop = lazy(() => import("../components/MarginTop"));
+const BasicNavbar = lazy(() => import("../components/BasicNavbar"));
+const Footer = lazy(() => import("../components/Footer"));
+const Home = lazy(() => import("../screens/Home"));
+const Everything = lazy(() => import("../screens/Everything"));
+const Product = lazy(() => import("../components/Product"));
+const AboutUs = lazy(() => import("../screens/About"));
+const ContactUs = lazy(() => import("../screens/ContactUs"));
+const ViewProfile = lazy(() => import("../screens/ViewProfile"));
+const Orders = lazy(() => import("../components/Orders"));
+const ErrorPage = lazy(() => import("../screens/PageNotFound"));
 
 const MainRoutes = {
-  path: '/',
-  element: <Home />,
+  path: "/",
+  element: [
+    <MarginTop key="margint top" />,
+    <BasicNavbar key="navbar" />,
+    <Home key="home" />,
+    <Footer key="footer" />,
+  ],
   children: [
     {
-      path: 'everything',
-      element: <Everything/>,
+      path: "products",
+      element: <Everything key="products" />,
     },
     {
-      path: 'jobs',
-      children: [
-        {
-          index: true,
-          element: <JobPage />,
-        },
-        {
-          path: 'jobDetails/:id',
-          element: <JobDetails />,
-        },
-        {
-          path: 'addJob',
-          element: <AddJobs />,
-        },
-        {
-          path: 'editJob/:id',
-          element: <EditJob />,
-        },
-      ],
+      path: "orders",
+      element: <Orders key="orders" />,
     },
     {
-      path: 'candidates',
-      children: [
-        {
-          index: true,
-          element: <CandidatePage />,
-        },
-        {
-          path: 'candidateProfile/:id',
-          element: <CandidateDetails />,
-        },
-        {
-          path: 'addCandidate',
-          element: <AddCandidate />,
-        },
-        {
-          path: 'editCandidate/:id',
-          element: <EditCandidate />,
-        },
-      ],
+      path: "user-orders",
+      element: <Orders key="user orders" admin />,
     },
     {
-      path: 'manageResumes',
-      element: <ManageResumesPage />,
+      path: "women",
+      element: <Everything key="women" />,
     },
     {
-      path: '*',
-      element: <ErrorPage />,
+      path: "men",
+      element: <Everything key="men" />,
     },
-  ]
-}
+    {
+      path: "electronics",
+      element: <Everything key="electronics" />,
+    },
+    {
+      path: "products/:id",
+      element: <Product key="product id" />,
+    },
+    {
+      path: "about",
+      element: <AboutUs key="about" />,
+    },
+    {
+      path: "contact-us",
+      element: <ContactUs key="contact us" />,
+    },
+    {
+      path: "view-profile",
+      element: <ViewProfile key="view profile" />,
+    },
+    {
+      path: "*",
+      element: <ErrorPage key="error Page" />,
+    },
+  ],
+};
 
 export default MainRoutes;

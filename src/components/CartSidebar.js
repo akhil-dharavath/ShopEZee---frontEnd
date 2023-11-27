@@ -6,13 +6,17 @@ import {
   Typography,
   Box,
   IconButton,
+  useMediaQuery,
 } from "@mui/material";
 import image from "../assets/images/login.jpg";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 export default function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -27,16 +31,17 @@ export default function SimpleDialog(props) {
     right: 0,
     top: 0,
     bottom: 0,
-    width: "100%",
-    maxWidth: "400px",
+    width: fullScreen ? "100%" : "60%",
+    maxWidth: !fullScreen && "400px",
   };
+
   return (
     <Dialog
-      onClose={handleClose}
       open={open}
       PaperProps={{
         style: dialogStyle,
       }}
+      fullScreen={true}
     >
       <DialogTitle className="shopping-cart-title">
         <Typography variant="body">Shopping Cart</Typography>
@@ -47,7 +52,7 @@ export default function SimpleDialog(props) {
       {true ? (
         <Box className="d-flex flex-column justify-content-between h-100 align-items-center">
           <div className="cart-item w-100 my-2">
-            <div className="d-flex">
+            <div className="d-flex mx-3">
               <div
                 style={{
                   background: `url(${image}) no-repeat`,
@@ -69,7 +74,11 @@ export default function SimpleDialog(props) {
             </IconButton>
           </div>
           <div style={{ width: "90%" }}>
-            <Link to="/cart" onClick={() => handleClose()}>
+            <Link
+              to="/cart"
+              onClick={() => handleClose()}
+              className="shopping-cart-link"
+            >
               <button className="shopping-cart-btn text-white my-3 w-100">
                 Show Cart
               </button>

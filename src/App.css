@@ -65,6 +65,7 @@
   font: bold;
   transition: all 0.2s;
   z-index: 2;
+  padding: 10px 30px;
 }
 
 .offers button:hover,
@@ -163,7 +164,7 @@
 
 .cards {
   width: 95%;
-  margin: auto;
+  margin: auto !important;
 }
 
 .card {
@@ -288,7 +289,7 @@
 }
 
 .About .profiles {
-  width: 70%;
+  width: 80%;
   margin: auto;
   display: flex;
   justify-content: space-evenly;
@@ -305,6 +306,7 @@
   overflow: hidden;
   margin: auto;
   border-radius: 50%;
+  border: 1px solid gray;
 }
 
 .About .image-container img {
@@ -314,7 +316,7 @@
 }
 
 .About .contact-us {
-  background: url("./assets/images/contact-us.jpeg") no-repeat fixed;
+  background: url("./assets/images/phone-contact-us.jpg") no-repeat fixed;
   background-size: cover;
   background-position: top center;
   height: 300px;
@@ -322,8 +324,19 @@
   margin: 40px 0px;
 }
 
+.About .contact-us::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 300px;
+  z-index: 1;
+  margin: auto;
+}
+
 .About .inside {
-  background-color: rgb(246, 251, 254);
+  color: white;
   max-width: 400px;
   width: 100%;
   margin: auto;
@@ -332,11 +345,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  z-index: 4 !important;
+  position: relative;
 }
 
 .Contact .heading {
   background: url("./assets/images/contact-us.jpeg") no-repeat fixed;
   background-size: cover;
+  background-position: center;
 }
 
 .Contact .heading::before {
@@ -474,7 +490,8 @@
   border-bottom: 1px solid black;
 }
 
-.shopping-cart-title button {
+.shopping-cart-title button,
+.filters-close-btn {
   width: auto;
   height: auto;
   border: 0px;
@@ -483,7 +500,12 @@
   transition: all 0.2s linear;
 }
 
-.shopping-cart-title button:hover {
+.filters-close-btn {
+  margin: 8px 5% 0px auto !important;
+}
+
+.shopping-cart-title button:hover,
+.filters-close-btn:hover {
   transform: scale(1.2);
   color: rgb(7, 138, 158);
 }
@@ -575,6 +597,19 @@
   margin: 0px 10px !important;
 }
 
+.slider-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-wrapper button {
+  padding: 5px 20px;
+}
+
+.slider-wrapper p {
+  margin: auto;
+}
+
 .show-filters {
   display: none;
 }
@@ -606,6 +641,7 @@
 .product div div button {
   margin-top: 40px;
   padding: 6px;
+  width: 200px;
   border-radius: 20px;
   border: 0px solid black;
   transition: all 0.3s linear;
@@ -663,7 +699,7 @@
   margin: auto;
 }
 
-.account-cards .account-card{
+.account-cards .account-card {
   width: 30%;
   border: 1px solid rgb(204, 203, 203);
   margin: 10px 5px;
@@ -672,10 +708,15 @@
   padding: 10px;
   cursor: pointer;
   min-width: 300px;
+  border-radius: 6px;
 }
 
-.account-cards .account-card .content{
+.account-cards .account-card .content {
   margin-left: 10px;
+}
+
+.shopping-cart-link {
+  padding: 0px !important;
 }
 
 @media (max-width: 992.5px) {
@@ -737,12 +778,21 @@
     padding: 5%;
   }
 
+  .offers h1 {
+    font-size: 3em;
+  }
+
+  .offers h3 {
+    font-size: 1.5em;
+    padding: 0px 5% !important;
+  }
+
   .logos {
     width: 80%;
   }
 
-  .MuiSlider-root {
-    max-width: 175px;
+  .About .profiles {
+    width: 100%;
   }
 
   .About .who-we-are {
@@ -824,20 +874,34 @@
   .shopping-cart {
     padding: 0px;
   }
+
+  .account-cards .account-card {
+    width: 90% !important;
+  }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 600px) {
+  .css-46bh2p-MuiCardContent-root {
+    padding: 0px 10px !important;
+  }
+}
+
+@media (max-width: 600px) {
   .specificationsRow {
     margin: 20px 5px;
   }
 
   .offers {
     font-size: 0.6rem;
+    background: url("./assets/images/phone-home.jpg") no-repeat fixed;
+    background-size: cover;
+    background-position: top;
   }
 
   .offers div {
     flex-direction: column;
     align-items: center;
+    padding: 0px 5% !important;
   }
 
   .offers button {
@@ -850,8 +914,43 @@
     width: 95%;
   }
 
+  .offers h1 {
+    font-size: 4em;
+  }
+
+  .offers h3 {
+    font-size: 2.5em;
+  }
+
   .logos {
     width: 70%;
+  }
+
+  .filter-sidebar {
+    width: 100%;
+    padding: 5%;
+  }
+
+  .filter-sidebar form input {
+    width: 90%;
+    max-width: 90%;
+  }
+
+  .filter-sidebar form button {
+    width: 40px;
+  }
+
+  .slider-wrapper p {
+    margin: auto 0px;
+  }
+
+  .MuiSlider-root {
+    max-width: 98%;
+    margin: 0px 2%;
+  }
+
+  .About .profiles {
+    width: 90%;
   }
 
   .About .who-we-are {
@@ -864,6 +963,12 @@
 
   .cards {
     margin: auto !important;
+  }
+
+  .Contact .heading {
+    background: url("./assets/images/phone-contact-us.jpg") no-repeat fixed;
+    background-position: center;
+    background-size: cover;
   }
 
   .Contact .queries-card {
@@ -921,23 +1026,31 @@
     flex-direction: column;
   }
 
-  .filter-sidebar {
-    display: none;
-  }
-
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
   .show-filters {
     display: block;
     margin: 15px 5% 15px auto;
     width: 150px;
-    border: 1px solid black;
+    border: 0px;
+    background-color: rgb(7, 138, 158);
+    color: white;
+    padding: 5px 20px;
   }
 
   .show-filters:hover {
-    background-color: rgb(231, 230, 230);
+    background-color: rgb(5, 111, 128);
   }
 
   .product-card {
     padding: 20px;
+  }
+
+  .product-card a {
+    padding: 0px !important;
   }
 
   .product-card div {

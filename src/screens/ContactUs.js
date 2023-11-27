@@ -3,6 +3,7 @@ import QueriesCard from "../components/QueriesCard";
 import ContactForm from "../components/ContactForm";
 
 const ContactUs = () => {
+
   return (
     <div className="Contact">
       <div className="heading right-nav" />

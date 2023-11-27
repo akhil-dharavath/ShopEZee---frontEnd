@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../assets/styles/loginPage.css";
 
-const Register = ({setShowFooter}) => {
+const Register = () => {
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -23,9 +23,9 @@ const Register = ({setShowFooter}) => {
     }
   };
 
-  useEffect(()=>{
-    setShowFooter(false)
-  },[setShowFooter])
+  // useEffect(()=>{
+  //   setShowFooter(false)
+  // },[setShowFooter])
 
   return (
     <Container>
@@ -80,7 +80,7 @@ const Register = ({setShowFooter}) => {
               <Button type="submit">Register</Button>
             </Form.Group>
             <p>
-              Already have an account? <Link to="/login">Login</Link>
+              Already have an account? <Link to="/auth/login">Login</Link>
             </p>
           </Form>
         </Col>
