@@ -1,17 +1,19 @@
 import React from "react";
 import OurTeamProfile from "../components/OurTeamProfile";
-import About1 from "../assets/images/about1.jpeg";
-import Profile1 from "../assets/images/profile1.jpeg";
-import Profile2 from "../assets/images/profile2.jpeg";
-import Profile3 from "../assets/images/profile3.jpeg";
-import Profile4 from "../assets/images/profile4.jpeg";
-import Profile5 from "../assets/images/profile5.jpeg";
-import Profile6 from "../assets/images/profile6.webp";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 import Specifications from "../components/Specifications";
+import {
+  about_1,
+  profile1,
+  profile2,
+  profile3,
+  profile4,
+  profile5,
+  profile6,
+} from "../routes/ImgRouters";
 
 const About = () => {
   return (
@@ -28,7 +30,7 @@ const About = () => {
             erat consequat auctor eu in elit.
           </p>
         </div>
-        <img src={About1} alt="people dicussing" />
+        <img src={about_1} alt="people dicussing" />
       </div>
       <div className="our-team text-center">
         <div className="separetor" />
@@ -41,12 +43,16 @@ const About = () => {
         </p>
       </div>
       <div className="profiles row">
-        <OurTeamProfile image={Profile1} name="Harvey" role="Founder - CEO" />
-        <OurTeamProfile image={Profile2} name="Jessica" role="COO" />
-        <OurTeamProfile image={Profile3} name="Rachel" role="Marketing Head" />
-        <OurTeamProfile image={Profile5} name="Luise" role="Lead Developer" />
-        <OurTeamProfile image={Profile4} name="Katrina" role="Intern Designer" />
-        <OurTeamProfile image={Profile6} name="Mike" role="Intern Designer" />
+        <OurTeamProfile image={profile1} name="Harvey" role="Founder - CEO" />
+        <OurTeamProfile image={profile2} name="Jessica" role="COO" />
+        <OurTeamProfile image={profile3} name="Rachel" role="Marketing Head" />
+        <OurTeamProfile image={profile5} name="Luise" role="Lead Developer" />
+        <OurTeamProfile
+          image={profile4}
+          name="Katrina"
+          role="Intern Designer"
+        />
+        <OurTeamProfile image={profile6} name="Mike" role="Intern Designer" />
       </div>
       <div className="contact-us text-center">
         <div className="inside">
@@ -60,7 +66,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Specifications/>
+      <Specifications />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Login from "../assets/images/login.jpg";
 import { Link } from "react-router-dom";
 import {
   Dialog,
@@ -11,6 +10,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import {log_in} from '../routes/ImgRouters'
 
 const Product = () => {
   const [rate, setRate] = useState(false);
@@ -18,7 +18,7 @@ const Product = () => {
 
   return (
     <div className="product">
-      <img src={Login} alt="product" />
+      <img src={log_in} alt="product" />
       <div>
         <h2>Title</h2>
         <h4>Description</h4>

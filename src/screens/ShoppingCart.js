@@ -6,10 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import login from "../assets/images/login.jpg";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
+import { log_in } from "../routes/ImgRouters";
 
 const ShoppingCart = () => {
   function createData(name, calories, fat, carbs, protein) {
@@ -45,7 +45,7 @@ const ShoppingCart = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>
-                  <img src={login} alt="login" width={100} />
+                  <img src={log_in} alt="login" width={100} />
                 </TableCell>
                 <TableCell>Product</TableCell>
                 <TableCell>Price</TableCell>

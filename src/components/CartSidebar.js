@@ -8,10 +8,10 @@ import {
   IconButton,
   useMediaQuery,
 } from "@mui/material";
-import image from "../assets/images/login.jpg";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import {log_in} from '../routes/ImgRouters'
 
 export default function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
@@ -55,7 +55,7 @@ export default function SimpleDialog(props) {
             <div className="d-flex mx-3">
               <div
                 style={{
-                  background: `url(${image}) no-repeat`,
+                  background: `url(${log_in}) no-repeat`,
                   width: 80,
                   height: 80,
                   backgroundSize: "cover",
