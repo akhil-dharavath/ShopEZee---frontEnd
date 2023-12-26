@@ -1,38 +1,1136 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  text-decoration: none !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.offers {
+  background: url("./assets/images/home_background.jpg") no-repeat fixed;
+  height: 80vh;
+  width: 100vw;
+  background-size: cover;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-evenly;
+  background-position: right;
+}
+
+.offers::before,
+.limitedOffer::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 80vh;
+}
+
+.offers h1 {
+  font-size: 4em;
+  width: 50%;
+  padding-left: 40px;
+  color: white;
+  z-index: 2;
+}
+
+.offers h3 {
+  font-size: 2em;
+  width: 50%;
+  padding-left: 40px;
+  color: white;
+  z-index: 2;
+}
+
+.limitedOffer p {
+  color: white;
+  padding-left: 40px;
+  width: 50%;
+  z-index: 2;
+}
+
+.offers div {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.offers button,
+.limitedOffer button {
+  font-size: 20px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  font: bold;
+  transition: all 0.2s;
+  z-index: 2;
+  padding: 10px 30px;
+}
+
+.offers button:hover,
+.limitedOffer button:hover {
+  background-color: black;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* clients styles */
+.clients {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+  width: 90%;
+  margin: 30px auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.clients img {
+  height: 100px;
+  margin: auto 20px;
+}
+
+.logo-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 50px 0;
+}
+
+.logos {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  width: 90%;
+  margin: auto;
+}
+
+.logo {
+  flex: 0 0 auto;
+  margin-right: 40px;
+}
+
+.logo img {
+  height: 100px;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.product-card {
+  background: rgb(240, 240, 240) !important;
+}
+
+.feturedProducts {
+  background-color: rgb(240, 240, 240);
+}
+
+.feturedProducts .css-bhp9pd-MuiPaper-root-MuiCard-root {
+  border-radius: 0px !important;
+}
+
+.feturedProductsHeading {
+  text-align: center;
+  padding-top: 70px;
+}
+
+.feturedProducts .card {
+  background: rgb(240, 240, 240);
+}
+
+.divider {
+  background-color: rgb(20, 161, 217);
+  padding: 1px;
+  width: 200px;
+  width: 200px;
+  margin: 40px auto;
+}
+
+.cards {
+  width: 95%;
+  margin: auto !important;
+}
+
+.card {
+  border: 0px !important;
+  box-shadow: none !important;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  border: none;
+  box-shadow: 0px 0px !important;
+}
+
+.limitedOffer {
+  background: url("./assets/images/limtedOffer.jpeg") no-repeat fixed;
+  height: 80vh;
+  width: 95vw;
+  margin: auto;
+  background-size: cover;
+  background-position: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.limitedOffer::before {
+  width: 95vw;
+}
+
+.limitedOffer h1 {
+  color: white;
+  z-index: 2;
+  padding-left: 40px;
+  width: 50%;
+}
+
+.limitedOffer h4 {
+  color: white;
+  z-index: 2;
+  padding-left: 40px;
+  width: 50%;
+}
+
+.specificationsRow {
+  padding: 40px 10px !important;
+  background-color: rgb(240, 240, 240);
+}
+
+.specificationsCard {
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.specificationsCard .icon {
+  font-size: 50px;
+  margin: auto;
+}
+
+.right-nav {
+  width: 100vw;
+  height: 60vh;
+}
+.right-nav::before {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  width: 100%;
+  height: 60vh;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.About .heading {
+  background: url("./assets/images/about-us.jpeg") no-repeat fixed;
+  background-size: cover;
+  background-position: top center;
+}
+
+.About .heading::before {
+  content: "About US";
+}
+
+.About .who-we-are {
+  display: flex;
+  justify-content: center;
+  background: rgb(240, 240, 240);
+  padding: 50px;
+}
+
+.About .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.About .who-we-are .separetor {
+  padding: 2px;
+  width: 100px;
+  background-color: rgb(20, 161, 217);
+}
+
+.About .left {
+  width: 50%;
+  background-color: rgb(250, 250, 250);
+  padding: 5% 4%;
+}
+
+.About .who-we-are img {
+  width: 50%;
+  background-color: rgb(250, 250, 250);
+}
+
+.About .our-team {
+  padding: 50px !important;
+  width: 70%;
+  margin: auto;
+  margin-top: 30px;
+  height: 350px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.About .profiles {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.About .profile-card {
+  margin: 12px 6px;
+  background: rgb(246, 251, 254);
+}
+
+.About .image-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin: auto;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+.About .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.About .contact-us {
+  background: url("./assets/images/phone-contact-us.jpg") no-repeat fixed;
+  background-size: cover;
+  background-position: top center;
+  height: 300px;
+  width: 100vw;
+  margin: 40px 0px;
+}
+
+.About .contact-us::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 300px;
+  z-index: 1;
+  margin: auto;
+}
+
+.About .inside {
+  color: white;
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  height: 300px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 4 !important;
+  position: relative;
+}
+
+.Contact .heading {
+  background: url("./assets/images/contact-us.jpeg") no-repeat fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.Contact .heading::before {
+  content: "Contact Us";
+}
+
+.Contact .queries {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+}
+
+.Contact .queries .separetor {
+  width: 70px;
+  padding-top: 1px;
+  background-color: black;
+}
+
+.Contact .queries {
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Contact .querycards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.Contact .queries-card {
+  width: 20%;
+  background-color: rgb(250, 250, 250);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.Contact .queries-card h5 {
+  font-size: 18px;
+  color: rgb(7, 138, 158);
+}
+
+.Contact .form {
+  display: flex;
+  background-color: rgb(240, 240, 240);
+  margin: 100px 0px !important;
+}
+
+.Contact .form .left {
+  width: 50%;
+  padding: 50px;
+  margin-top: 8%;
+}
+
+.Contact .form .right {
+  width: 50%;
+  margin: 50px 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+}
+
+.Contact .form .right input,
+.Contact .form .right textarea {
+  padding: 5px 10px;
+  width: 100%;
+  margin: 10px auto;
+  border: 1px solid black !important;
+  background-color: white !important;
+  font-size: 18px !important;
+  transition: all 0.3s linear;
+}
+
+.Contact .form .right input:focus,
+.Contact .form .right textarea:focus,
+.Contact .form .right input:hover,
+.Contact .form .right textarea:hover {
+  outline: 1px solid rgb(7, 138, 158);
+  border: 1px solid rgb(7, 138, 158) !important;
+  border-radius: 6px;
+}
+
+.Contact .form .right button,
+.shopping-cart-btn {
+  background-color: rgb(7, 138, 158);
+  outline: none;
+  border: none;
+  border-radius: 0px;
+  padding: 10px 0px !important;
+  margin-top: 10px;
+  transition: all 0.3s linear;
+}
+
+.Contact .form .right button:hover,
+.shopping-cart-btn:hover {
+  background-color: rgb(5, 111, 128);
+}
+
+.cart-item {
+  width: 90% !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item .details {
+  margin: 0px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item button {
+  width: auto;
+  height: auto;
+  background: transparent !important;
+  border-radius: 50%;
+  border: 0px;
+  color: gray;
+  transition: all 0.3s linear;
+}
+
+.cart-item button:hover {
+  color: red;
+  transform: scale(1.1);
+}
+
+.shopping-cart-title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.shopping-cart-title button,
+.filters-close-btn {
+  width: auto;
+  height: auto;
+  border: 0px;
+  background: transparent !important;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+
+.filters-close-btn {
+  margin: 8px 5% 0px auto !important;
+}
+
+.shopping-cart-title button:hover,
+.filters-close-btn:hover {
+  transform: scale(1.2);
+  color: rgb(7, 138, 158);
+}
+
+.footer {
+  border-top: 1px solid gray;
+  padding-top: 20px !important;
+}
+
+.footer .first-footer {
+  padding: 0px 40px;
+  display: flex;
+}
+
+.footer .left {
+  width: 40%;
+}
+
+.footer .right {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer .card {
+  border: none;
+}
+
+.footer .second-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid gray;
+  padding: 20px 40px;
+}
+
+.footer .second-footer .icons {
+  width: 50%;
+  max-width: 250px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filters {
+  display: flex;
+  /* margin: 20px; */
+}
+
+.filters .cards {
+  background: rgb(240, 240, 240) !important;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.one {
+  margin: 3% 10px !important;
+}
+
+.two {
+  outline: 2px solid rgba(0, 0, 0, 0.205);
+  outline-offset: -10px;
+  padding: 10px;
+  transition: all 0.3s !important;
+}
+
+.two:hover {
+  outline: 2px solid rgba(0, 0, 0, 0.7);
+}
+
+.two > a {
+  height: 270px;
+  width: 210px !important;
+  position: relative;
+  margin: 0 auto;
+  display: block;
+}
+
+.two a {
+  text-decoration: none;
+}
+
+.two a img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  opacity: 1;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.filter-sidebar {
+  width: 240px;
+  padding: 50px 25px;
+  background-color: #e5e5e5;
+}
+
+.categories p {
+  background-color: #e5e5e5 !important;
+}
+
+/* .filter-sidebar form {
+  display: flex;
+  flex-wrap: nowrap;
+} */
+
+/* .filter-sidebar form input {
+  width: 90%;
+  border: 1.5px solid gray !important;
+  padding: 0px 5px !important;
+  font-size: 17px !important;
+} */
+
+/* .filter-sidebar form input:focus {
+  outline: none;
+  border: 1.5px solid rgb(7, 138, 158) !important;
+} */
+
+.filter-sidebar button {
+  width: auto;
+  height: auto;
+  border: 0px;
+  border-radius: 0px;
+  margin-left: 5px;
+  color: white;
+  background-color: rgb(7, 138, 158);
+}
+
+.filter-sidebar button:hover {
+  background-color: rgb(5, 111, 128);
+}
+
+.filter-sidebar .categories p {
+  margin: 0px 10px !important;
+}
+
+/* .slider-wrapper {
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .slider-wrapper button {
+  padding: 5px 20px;
+} */
+
+/* .slider-wrapper p {
+  margin: auto 0px !important;
+} */
+
+.show-filters {
+  display: none;
+}
+
+.product {
+  margin: 50px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product .image {
+  width: 50%;
+}
+
+.product img {
+  max-width: 300px;
+  margin: 50px auto;
+  display: block;
+}
+
+.product div div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.product div div button {
+  margin-top: 40px;
+  padding: 6px;
+  width: 200px;
+  border-radius: 20px;
+  border: 0px solid black;
+  transition: all 0.3s linear;
+}
+
+.add-to-cart {
+  background: #ffd814;
+}
+
+.add-to-cart:hover {
+  background: #f7ca00;
+}
+
+.buy-now {
+  background: #ffa41c;
+}
+
+.buy-now:hover {
+  background-color: #fa8900;
+}
+
+.product-close-btn {
+  color: white;
+  background: rgb(7, 138, 158) !important;
+  position: absolute;
+  top: 120px;
+  right: 50px;
+  padding: 10px 15px;
+  transition: all 0.3s;
+}
+
+.product-close-btn:hover {
+  background: rgb(5, 111, 128) !important;
+}
+
+.shopping-cart {
+  padding: 50px;
+}
+
+.shopping-cart h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+.shopping-cart input {
+  width: 55px;
+  padding: 3px !important;
+  border: 1px solid gray !important;
+  background: white !important;
+  text-align: center;
+}
+
+.MuiTable-root {
+  min-width: 600px;
+}
+
+.account-cards {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.account-cards .account-card {
+  width: 30%;
+  border: 1px solid rgb(204, 203, 203);
+  margin: 10px 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10px;
+  cursor: pointer;
+  min-width: 300px;
+  border-radius: 6px;
+}
+
+.account-cards .account-card .content {
+  margin-left: 10px;
+}
+
+.shopping-cart-link {
+  padding: 0px !important;
+}
+
+@media (max-width: 992.5px) {
+  .cards {
+    width: 90%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .offers h1,
+  .offers div {
+    width: 70%;
+  }
+
+  .logos {
+    width: 85%;
+  }
+
+  .Contact .queries-card {
+    padding: 20px 10px;
+  }
+
+  .Contact .queries-card h3 {
+    font-size: 22px;
+  }
+
+  .Contact .queries-card p,
+  .Contact .queries-card h5 {
+    font-size: 15px;
+  }
+
+  .Contact .form .left {
+    padding: 30px;
+  }
+
+  .Contact .form .right {
+    margin: 30px 15px;
+    padding: 20px;
+  }
+
+  .footer {
+    padding: 0px 20px;
+    border-top: 0px;
+  }
+  .shopping-cart {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .limitedOffer h1,
+  .limitedOffer h4,
+  .limitedOffer p {
+    width: 70%;
+  }
+
+  .offers h1,
+  .offers div,
+  .offers h3 {
+    width: 100%;
+    padding: 5%;
+  }
+
+  .offers h1 {
+    font-size: 3em;
+  }
+
+  .offers h3 {
+    font-size: 1.5em;
+    padding: 0px 5% !important;
+  }
+
+  .logos {
+    width: 80%;
+  }
+
+  .About .profiles {
+    width: 100%;
+  }
+
+  .About .who-we-are {
+    flex-direction: column-reverse;
+  }
+
+  .About .who-we-are .left,
+  .About .who-we-are img {
+    width: 100%;
+  }
+
+  .About .who-we-are .left {
+    height: 90vh;
+    max-height: 300px !important;
+  }
+
+  .Contact .querycards {
+    flex-wrap: wrap;
+  }
+
+  .Contact .queries-card {
+    width: 45%;
+    padding: 30px 20px;
+    margin: 10px auto;
+  }
+
+  .Contact .form {
+    flex-wrap: wrap;
+    margin: 20px 0px !important;
+  }
+
+  .Contact .form .left {
+    margin-top: 20px;
+    width: 95%;
+  }
+
+  .Contact .form .right {
+    width: 95%;
+    margin: 15px 15px;
+  }
+
+  .footer {
+    padding: 0px;
+  }
+
+  .footer .first-footer {
+    flex-wrap: wrap;
+  }
+
+  .footer .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .footer .right {
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 10px;
+  }
+
+  .footer .right .card p {
+    margin-bottom: 0px;
+  }
+
+  .footer .second-footer {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer .second-footer .content {
+    text-align: center;
+  }
+
+  .filter-sidebar {
+    width: 300px;
+    padding: 40px 20px;
+  }
+
+  .two {
+    max-width: 100%;
+  }
+
+  .shopping-cart {
+    padding: 0px;
+  }
+
+  .account-cards .account-card {
+    width: 90% !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .css-46bh2p-MuiCardContent-root {
+    padding: 0px 10px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .specificationsRow {
+    margin: 20px 5px;
+  }
+
+  .offers {
+    font-size: 0.6rem;
+    background: url("./assets/images/phone-home.jpg") no-repeat fixed;
+    background-size: cover;
+    background-position: top;
+  }
+
+  .offers div {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 5% !important;
+  }
+
+  .offers button {
+    margin: 20px;
+  }
+
+  .limitedOffer h1,
+  .limitedOffer h4,
+  .limitedOffer p {
+    width: 95%;
+  }
+
+  .offers h1 {
+    font-size: 4em;
+  }
+
+  .offers h3 {
+    font-size: 2.5em;
+  }
+
+  .logos {
+    width: 70%;
+  }
+
+  .filter-sidebar {
+    width: 100%;
+    padding: 5%;
+  }
+
+  .filter-sidebar form input {
+    width: 90%;
+    max-width: 90%;
+  }
+
+  .filter-sidebar form button {
+    width: 40px;
+  }
+
+  .slider-wrapper p {
+    margin: auto 0px;
+  }
+
+  .MuiSlider-root {
+    max-width: 98%;
+    margin: 0px 2%;
+  }
+
+  .About .profiles {
+    width: 90%;
+  }
+
+  .About .who-we-are {
+    padding: 30px 0px;
+  }
+
+  .About .our-team {
+    padding: 0px !important;
+  }
+
+  .cards {
+    margin: auto !important;
+  }
+
+  .Contact .heading {
+    background: url("./assets/images/phone-contact-us.jpg") no-repeat fixed;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .Contact .queries-card {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .Contact .form .left {
+    margin-top: 15px;
+    width: 95%;
+  }
+
+  .Contact .form .right {
+    width: 95%;
+    margin: 10px;
+  }
+
+  .Contact .form .right input,
+  .Contact .form .right textarea {
+    margin: 5px auto;
+    font-size: 16px !important;
+    padding: 5px;
+  }
+
+  .footer .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer .card {
+    padding: 10px 0px;
+  }
+
+  .footer .left {
+    margin: 0px;
+  }
+
+  .footer .second-footer,
+  .footer .first-footer {
+    padding: 10px;
+  }
+
+  .footer .second-footer .icons {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer .first-footer .right .card h3,
+  .footer .first-footer .right .card p {
+    text-align: center;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  .show-filters {
+    display: block;
+    margin: 15px 5% 15px auto;
+    width: 150px;
+    border: 0px;
+    background-color: rgb(7, 138, 158);
+    color: white;
+    padding: 5px 20px;
+  }
+
+  .show-filters:hover {
+    background-color: rgb(5, 111, 128);
+  }
+
+  .product-card {
+    padding: 20px;
+  }
+
+  .product-card a {
+    padding: 0px !important;
+  }
+
+  .product-card div {
+    padding: 0px;
+  }
+
+  .css-46bh2p-MuiCardContent-root:last-child {
+    padding-bottom: 0px !important;
   }
 }

@@ -1,0 +1,122 @@
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
+import { Nav, Navbar, Offcanvas, Container } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
+import "../../assets/styles/basicNavbar.css";
+import React, { useEffect, useState } from "react";
+import SimpleDialog from "../CartSidebar";
+import { Badge } from "@mui/material";
+import { isEmpty } from "ramda";
+
+function BasicNavbar({ userDetails, handleGetUser }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(0);
+  const [active, setActive] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    handleGetUser();
+    // eslint-disable-next-line
+  }, []);
+
+  // console.log(userDetails);
+
+  return (
+    <div>
+      <Navbar
+        expand={"lg"}
+        className="mb-3"
+        fixed="top"
+        bg="dark"
+        data-bs-theme="dark"
+      >
+        <Container fluid>
+          <Navbar.Brand href="/" className="text-white">
+            ShopEZee
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls={`offcanvasNavbar-expand-lg`}
+            onClick={() => setActive(!active)}
+          />
+          {/* navbar-toggler navbar-toggler collapsed */}
+          <Navbar.Offcanvas
+            id={`offcanvasNavbar-expand-lg`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+            placement="end"
+            // className={`${!active?'d-none':''}`}
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+                <Link to="/">ShopEZee</Link>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav>
+                <Link
+                  className="link"
+                  to="/products"
+                  onClick={() => setActive(!active)}
+                >
+                  EVERYTHING
+                </Link>
+                <Link className="link" to="/women">
+                  WOMEN
+                </Link>
+                <Link className="link" to="/men">
+                  MEN
+                </Link>
+                <Link className="link" to="/electronics">
+                  ELECTRONICS
+                </Link>
+              </Nav>
+              <Nav>
+                <Link className="link" to="/about">
+                  ABOUT
+                </Link>
+                <Link className="link" to="/contact-us">
+                  CONTACT US
+                </Link>
+                {!isEmpty(userDetails) && (
+                  <Link onClick={handleClickOpen}>
+                    <Badge badgeContent={value} color="info">
+                      <ShoppingCartIcon />
+                    </Badge>
+                  </Link>
+                )}
+
+                {/* shopping cart */}
+                <SimpleDialog
+                  open={open}
+                  onClose={handleClose}
+                  setValue={setValue}
+                />
+
+                {isEmpty(userDetails) ? (
+                  <Link className="link" to="/auth/login">
+                    LOGIN
+                  </Link>
+                ) : (
+                  <Link to="/your-account">
+                    <PersonIcon />
+                  </Link>
+                )}
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+
+export default BasicNavbar;
