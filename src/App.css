@@ -3,11 +3,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
+<<<<<<< HEAD
   scroll-behavior: smooth;
 }
 
 a {
   text-decoration: none !important;
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .offers {
@@ -150,10 +153,13 @@ a {
   background-color: rgb(240, 240, 240);
 }
 
+<<<<<<< HEAD
 .feturedProducts .css-bhp9pd-MuiPaper-root-MuiCard-root {
   border-radius: 0px !important;
 }
 
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 .feturedProductsHeading {
   text-align: center;
   padding-top: 70px;
@@ -178,7 +184,10 @@ a {
 
 .card {
   border: 0px !important;
+<<<<<<< HEAD
   box-shadow: none !important;
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .css-bhp9pd-MuiPaper-root-MuiCard-root {
@@ -439,6 +448,7 @@ a {
   border: 1px solid black !important;
   background-color: white !important;
   font-size: 18px !important;
+<<<<<<< HEAD
   transition: all 0.3s linear;
 }
 
@@ -449,6 +459,16 @@ a {
   outline: 1px solid rgb(7, 138, 158);
   border: 1px solid rgb(7, 138, 158) !important;
   border-radius: 6px;
+=======
+  transition: all 0.4s linear;
+}
+
+.Contact .form .right input:focus,
+.Contact .form .right textarea:focus {
+  outline: 1px solid rgb(7, 138, 158);
+  border: 1px solid rgb(7, 138, 158) !important;
+  border-radius: 8px;
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .Contact .form .right button,
@@ -562,11 +582,16 @@ a {
 
 .filters {
   display: flex;
+<<<<<<< HEAD
   /* margin: 20px; */
+=======
+  justify-content: space-between;
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .filters .cards {
   background: rgb(240, 240, 240) !important;
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -638,6 +663,31 @@ a {
   outline: none;
   border: 1.5px solid rgb(7, 138, 158) !important;
 } */
+=======
+}
+
+.filter-sidebar {
+  width: 400px;
+  padding: 50px 25px;
+}
+
+.filter-sidebar form {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.filter-sidebar form input {
+  max-width: 300px;
+  border: 1.5px solid gray !important;
+  padding: 0px 5px !important;
+  font-size: 17px !important;
+}
+
+.filter-sidebar form input:focus {
+  outline: none;
+  border: 1.5px solid rgb(7, 138, 158) !important;
+}
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 
 .filter-sidebar button {
   width: auto;
@@ -657,6 +707,7 @@ a {
   margin: 0px 10px !important;
 }
 
+<<<<<<< HEAD
 /* .slider-wrapper {
   display: flex;
   justify-content: space-between;
@@ -669,6 +720,20 @@ a {
 /* .slider-wrapper p {
   margin: auto 0px !important;
 } */
+=======
+.slider-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-wrapper button {
+  padding: 5px 20px;
+}
+
+.slider-wrapper p {
+  margin: auto;
+}
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 
 .show-filters {
   display: none;
@@ -676,11 +741,15 @@ a {
 
 .product {
   margin: 50px;
+<<<<<<< HEAD
   margin-top: 100px;
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
   display: flex;
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
 .product .image {
   width: 50%;
 }
@@ -689,6 +758,19 @@ a {
   max-width: 300px;
   margin: 50px auto;
   display: block;
+=======
+.product img {
+  width: 50%;
+  margin: 50px auto;
+}
+
+.product > div {
+  margin: 50px;
+  padding: 50px 0px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .product div div {
@@ -722,17 +804,27 @@ a {
 }
 
 .product-close-btn {
+<<<<<<< HEAD
   color: white;
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
   background: rgb(7, 138, 158) !important;
   position: absolute;
   top: 120px;
   right: 50px;
+<<<<<<< HEAD
   padding: 10px 15px;
   transition: all 0.3s;
 }
 
 .product-close-btn:hover {
   background: rgb(5, 111, 128) !important;
+=======
+}
+
+.product-close-btn:hover {
+  background: rgb(5, 111, 128);
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .shopping-cart {
@@ -752,10 +844,13 @@ a {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .MuiTable-root {
   min-width: 600px;
 }
 
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 .account-cards {
   display: flex;
   justify-content: space-evenly;
@@ -931,19 +1026,25 @@ a {
     align-items: center;
   }
 
+<<<<<<< HEAD
   .footer .second-footer .content {
     text-align: center;
   }
 
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
   .filter-sidebar {
     width: 300px;
     padding: 40px 20px;
   }
 
+<<<<<<< HEAD
   .two {
     max-width: 100%;
   }
 
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
   .shopping-cart {
     padding: 0px;
   }

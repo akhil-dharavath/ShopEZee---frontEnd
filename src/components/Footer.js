@@ -5,7 +5,10 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 import GoogleIcon from "@mui/icons-material/Google";
+<<<<<<< HEAD
 import { IconButton } from "@mui/material";
+=======
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 
 const Footer = () => {
   return (
@@ -43,6 +46,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="second-footer">
+<<<<<<< HEAD
         <div className="content">
           <p>Copyright © 2023 ShopEZee. Powered by ShopEZee.</p>
           <p>Developed and disgned by Dharavath Akhil.</p>
@@ -78,6 +82,16 @@ const Footer = () => {
           >
             <GoogleIcon />
           </IconButton>
+=======
+        <p>Copyright © 2023 ShopEZee. Powered by ShopEZee.</p>
+        <div className="icons">
+          <FacebookIcon />
+          <YouTubeIcon />
+          <TwitterIcon />
+          <InstagramIcon />
+          <EmailIcon />
+          <GoogleIcon />
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
         </div>
       </div>
     </div>

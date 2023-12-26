@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import FiltersSidebar from "../components/FilterSidebar";
+=======
+import FiltersSidebar from "../components/FiltersSidebar";
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 import BasicCard from "../components/BasicCard";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";

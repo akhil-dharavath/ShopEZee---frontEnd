@@ -3,8 +3,13 @@ import React, { lazy } from "react";
 import { Outlet } from "react-router-dom";
 // import MinimalLayout from '../app/Layout/MinimalLayout'
 
+<<<<<<< HEAD
 const RegisterPage = lazy(() => import("../screens/Register/index"));
 const LoginComponent = lazy(() => import("../screens/Login/index"));
+=======
+const RegisterPage = lazy(() => import("../screens/Register"));
+const LoginComponent = lazy(() => import("../screens/Login"));
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 
 const LoginRoutes = {
   path: "/auth",

@@ -12,6 +12,7 @@
   display: flex;
 }
 
+<<<<<<< HEAD
 .navbar-nav .link {
   display: inline-block;
   color: #fff;
@@ -37,6 +38,12 @@
   color: #fff;
   text-decoration: none;
   padding: 11px;
+=======
+a {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 10px !important;
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
 }
 
 .offcanvas-body {
@@ -44,7 +51,11 @@
   justify-content: space-between;
 }
 
+<<<<<<< HEAD
 .navbar-toggler {
+=======
+.navbar-toggler{
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
   max-width: 50px;
 }
 

@@ -1,11 +1,21 @@
 import { Typography } from "@mui/material";
 import React from "react";
 
+<<<<<<< HEAD
 const ContactForm = ({ data, handleChange, handleSubmit }) => {
   return (
     <div className="form">
       <div className="left">
         <Typography variant="body-2">Don't be a stranger!</Typography>
+=======
+const ContactForm = () => {
+  return (
+    <div className="form">
+      <div className="left">
+        <Typography variant="body-2">
+          Don't be a stranger!
+        </Typography>
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
         <Typography variant="h3">You tell us. We listen.</Typography>
         <Typography variant="body" className="d-block mt-4 text-secondary">
           Cras elementum finibus lacus nec lacinia. Quisque non convallis nisl,
@@ -14,6 +24,7 @@ const ContactForm = ({ data, handleChange, handleSubmit }) => {
         </Typography>
       </div>
       <form className="right">
+<<<<<<< HEAD
         <input
           placeholder="Name"
           name="name"
@@ -44,6 +55,13 @@ const ContactForm = ({ data, handleChange, handleSubmit }) => {
           className="btn btn-primary"
           onClick={(e) => handleSubmit(e)}
         >
+=======
+        <input placeholder="Name" />
+        <input placeholder="Subject" />
+        <input placeholder="Email" />
+        <textarea placeholder="Message" rows={7} />
+        <button type="submit" className="btn btn-primary">
+>>>>>>> edefb436ec8c51250c51865c42d2ea1d52133963
           SEND MESSAGE
         </button>
       </form>
