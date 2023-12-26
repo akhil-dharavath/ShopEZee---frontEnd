@@ -85,9 +85,14 @@ function BasicNavbar({ userDetails, handleGetUser }) {
                 </Link>
                 {!isEmpty(userDetails) && (
                   <Link onClick={handleClickOpen}>
-                    <Badge badgeContent={value} color="info">
+                    <Badge
+                      badgeContent={value}
+                      color="info"
+                      className="hide_mobile"
+                    >
                       <ShoppingCartIcon />
                     </Badge>
+                    <p className="show_mobile">CART</p>
                   </Link>
                 )}
 
@@ -103,9 +108,14 @@ function BasicNavbar({ userDetails, handleGetUser }) {
                     LOGIN
                   </Link>
                 ) : (
-                  <Link to="/your-account">
+                  <>
+                  <Link to="/your-account" className="hide_mobile">
                     <PersonIcon />
                   </Link>
+                  <Link to="/your-account">
+                    <p className="show_mobile">VIEW PROFILE</p>
+                  </Link>
+                  </>
                 )}
               </Nav>
             </Offcanvas.Body>

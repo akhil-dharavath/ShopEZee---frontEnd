@@ -28,6 +28,8 @@ const ShoppingCart = ({ cart, fetchCart, handleRemoveFromCart }) => {
     await fetchCart();
   };
 
+  console.log(cart);
+
   return (
     <div className="shopping-cart">
       <h1>Cart</h1>
