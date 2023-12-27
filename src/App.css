@@ -595,6 +595,10 @@ a {
   transition: all 0.3s !important;
 }
 
+.css-s18byi{
+  box-shadow: none !important;
+}
+
 .two:hover {
   outline: 2px solid rgba(0, 0, 0, 0.7);
 }
