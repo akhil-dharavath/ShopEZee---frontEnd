@@ -2,40 +2,52 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../assets/styles/loginPage.css";
-import Spinner from '../../components/Spinner'
+import { useSnackbar } from "notistack";
 
-const Login = ({ login, loading, loginFailure, handleLogin }) => {
+const Login = ({ login, handleLogin,loginFailure }) => {
+  // text fields
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
+
+  // updating the text fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
   };
-  const route = useLocation();
-  const address = route.pathname.slice(6);
+
+  // get address wheather login or register
+  const address = useLocation().pathname.slice(6);
+  const navigate = useNavigate(); // navigate
+
+  // import enqueueSnackbar for showing error message
+  const { enqueueSnackbar } = useSnackbar();
+
+  // on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(details, address);
+    // check the rext fields are not empty
+    if (details.email === "" || details.password === "") {
+      enqueueSnackbar("Please enter required fields!", { variant: "error" });
+      return;
+    }
+
+    handleLogin(details, address); // send login details to api including address
   };
 
-  const navigate = useNavigate();
   useEffect(() => {
     if (login && login !== "") {
       localStorage.setItem("token", login);
-      navigate("/");
+      navigate("/"); // if logged in navigate to Home Page
     }
     // eslint-disable-next-line
   }, [login]);
-
-  if(loading){
-    return <Spinner/>
-  }
-
-  // if(loginFailure){
-  //   return alert('Invalid login Credentials')
-  // }
+  
+  useEffect(()=>{
+    loginFailure!=="" && enqueueSnackbar("Invalid login credentials!", { variant: "error" });
+    // eslint-disable-next-line
+  },[loginFailure])
 
   return (
     <Container>

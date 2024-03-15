@@ -31,7 +31,7 @@ const Home = ({ productsLoading, products, fetchProducts, handleGetUser }) => {
 
   useEffect(() => {
     fetchProducts();
-    handleGetUser();
+    localStorage.getItem('token') && handleGetUser();
     // eslint-disable-next-line
   }, []);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,29 +6,33 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IconButton, TextField } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import DoneIcon from "@mui/icons-material/Done";
+import CartRow from "../../components/CartRow";
+import { isEmpty } from "ramda";
+import { enqueueSnackbar } from "notistack";
 
-const ShoppingCart = ({ cart, fetchCart, handleRemoveFromCart }) => {
-  const [qty, setQty] = useState(0);
-
+const ShoppingCart = ({
+  cart,
+  fetchCart,
+  handleRemoveFromCart,
+  removeFromCart: removedFromCart,
+  removeFromCartFailure,
+}) => {
   useEffect(() => {
     fetchCart();
     // eslint-disable-next-line
   }, []);
-
-  const handleQty = (e) => {
-    e.preventDefault();
-    setQty(e.target.value);
-  };
 
   const removeFromCart = async (id) => {
     await handleRemoveFromCart(id);
     await fetchCart();
   };
 
-  console.log(cart);
+  useEffect(() => {
+    !isEmpty(removeFromCartFailure) &&
+      enqueueSnackbar(removeFromCartFailure.response.data.message, {
+        variant: "error",
+      });
+  }, [removeFromCartFailure]);
 
   return (
     <div className="shopping-cart">
@@ -48,41 +52,11 @@ const ShoppingCart = ({ cart, fetchCart, handleRemoveFromCart }) => {
             </TableHead>
             <TableBody>
               {cart.map((car) => (
-                <TableRow
-                  key={car.productId}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>
-                    <img src={car.image} alt="login" width={100} />
-                  </TableCell>
-                  <TableCell>{car.name}</TableCell>
-                  <TableCell>{car.price}</TableCell>
-                  <TableCell>
-                    {/* <input value={qty} type="number" onChange={(e)=>setQty(e.target.value)} /> */}
-                    <TextField
-                      hiddenLabel
-                      type="number"
-                      size="small"
-                      value={qty !== 0 ? qty : car.quantity}
-                      InputProps={{ inputProps: { min: 1, max: 10 } }}
-                      onChange={(e) => handleQty(e)}
-                    />
-                  </TableCell>
-                  <TableCell>{car.quantity * car.price}</TableCell>
-                  <TableCell>
-                    <div className="d-flex flex-nowrap justify-content-between">
-                      <IconButton sx={{ width: "auto" }}>
-                        <DoneIcon />
-                      </IconButton>
-                      <IconButton
-                        sx={{ width: "auto" }}
-                        onClick={() => removeFromCart(car.productId)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </div>
-                  </TableCell>
-                </TableRow>
+                <CartRow
+                  key={car._id}
+                  car={car}
+                  removeFromCart={removeFromCart}
+                />
               ))}
             </TableBody>
           </Table>

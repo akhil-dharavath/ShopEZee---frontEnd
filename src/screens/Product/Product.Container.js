@@ -14,14 +14,18 @@ import {
   handleGetOrders,
   handlePostReview,
   handleGetReviews,
-  getReviews
+  getReviews,
+  getAddToCart,
+  getAddToCartFailure
 } from "../../redux/reducers/homeReducer";
 
 const mapStateToProps = createStructuredSelector({
   product: getOneProduct,
   productLoading: getOneProductLoading,
-  productFailure:getOneProductFailure,
-  review: getReviews
+  productFailure: getOneProductFailure,
+  review: getReviews,
+  addToCart: getAddToCart,
+  addToCartFailure:getAddToCartFailure
 });
 
 const mapDispatchToProps = {
@@ -33,7 +37,7 @@ const mapDispatchToProps = {
   handlePlaceOrder,
   handleGetOrders,
   handlePostReview,
-  handleGetReviews
+  handleGetReviews,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

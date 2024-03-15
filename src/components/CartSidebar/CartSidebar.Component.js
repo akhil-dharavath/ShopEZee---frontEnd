@@ -12,6 +12,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { useEffect } from "react";
+import { isEmpty } from "ramda";
+import { enqueueSnackbar } from "notistack";
 
 export default function SimpleDialog({
   open,
@@ -20,12 +22,14 @@ export default function SimpleDialog({
   fetchCart,
   handleRemoveFromCart,
   setValue,
+  removeFromCart: removedFromCart,
+  removeFromCartFailure,
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
-    fetchCart();
+    localStorage.getItem("token") && fetchCart();
     // eslint-disable-next-line
   }, []);
 
@@ -48,9 +52,24 @@ export default function SimpleDialog({
     await fetchCart();
   };
 
+  useEffect(() => {
+    !isEmpty(removedFromCart) &&
+      enqueueSnackbar("Successfully item removed from cart", {
+        variant: "success",
+      });
+  }, [removedFromCart]);
+
+  useEffect(() => {
+    !isEmpty(removeFromCartFailure) &&
+      enqueueSnackbar(removeFromCartFailure.response.data.message, {
+        variant: "error",
+      });
+  }, [removeFromCartFailure]);
+
   return (
     <Dialog
       open={open}
+      onClose={onClose}
       PaperProps={{
         style: dialogStyle,
       }}
@@ -78,7 +97,7 @@ export default function SimpleDialog({
                 <div className="details">
                   <p>{car.name}</p>
                   <p>
-                    {car.quantity} x {car.price/car.quantity}
+                    {car.quantity} x {car.price / car.quantity}
                   </p>
                 </div>
               </div>

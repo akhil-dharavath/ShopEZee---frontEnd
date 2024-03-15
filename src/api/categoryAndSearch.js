@@ -1,6 +1,7 @@
 import axios from "axios";
+// import { authtoken } from "./_constants";
 
-const getCategory = async () => {
+export const getCategoryApi = async () => {
     const response = await axios({
     headers: { "content-type": "application/json" },
     method: "GET",
@@ -8,5 +9,3 @@ const getCategory = async () => {
   });
   return response.data;
 };
-
-export default getCategory;

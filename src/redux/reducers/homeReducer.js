@@ -2,24 +2,25 @@ import { createSelector } from "reselect";
 import { defaultTo, prop } from "ramda";
 import { PRODUCTS_ACTION as ACTIONS } from "../actions";
 import { LOGIN_ACTIONS } from "../actions";
-import getProductsApi from "../../api/getProducts";
-import getOneProductApi from "../../api/getOneProduct";
-import registerUser from "../../api/authUser";
-import getCartApi from "../../api/getCart";
-import addToCartApi from "../../api/addToCart";
-import removeFromCart from "../../api/removeFromCart";
-import addCategory from "../../api/addCategory";
-import userOrdersApi from "../../api/userOrders";
-import deleteAccount from "../../api/deleteAccount";
-import addProductApi from "../../api/addProducts";
-import getCategoryApi from "../../api/getCategory";
-import placeOrderApi from "../../api/placeOrder";
-import getOrdersApi from "../../api/getOrders";
-import contactUsApi from "../../api/contactUs";
-import postReviewApi from "../../api/postReview";
-import getReviewsApi from "../../api/getReviews";
-import getUserApi from "../../api/getUser";
-import updateUserApi from "../../api/updateUser";
+
+import { getProductsApi } from "../../api/productManagement";
+import { getOneProductApi } from "../../api/productManagement";
+import { authUserApi } from "../../api/userAuthentication";
+import { getCartApi } from "../../api/shoppingCart";
+import { addToCartApi } from "../../api/shoppingCart";
+import { removeFromCartApi } from "../../api/shoppingCart";
+import { addCategoryApi } from "../../api/adminFeatures";
+import { userOrdersApi } from "../../api/orderManagement";
+import { deleteAccountApi } from "../../api/userProfileManagement";
+import { addProductApi } from "../../api/adminFeatures";
+import { getCategoryApi } from "../../api/categoryAndSearch";
+import { placeOrderApi } from "../../api/orderManagement";
+import { getOrdersApi } from "../../api/adminFeatures";
+import { contactUsApi } from "../../api/contactUs";
+import { postReviewApi } from "../../api/reviewsAndRatings";
+import { getReviewsApi } from "../../api/reviewsAndRatings";
+import { getUserApi } from "../../api/userProfileManagement";
+import { updateUserApi } from "../../api/userProfileManagement";
 
 const initialState = {
   products: [],
@@ -32,7 +33,7 @@ const initialState = {
 
   loginData: "",
   loginLoading: false,
-  loginFailureMessage: {},
+  loginFailureMessage: "",
 
   cart: [],
   cartLoading: false,
@@ -108,7 +109,6 @@ export const getProductsFailure = createSelector(
   getSlice,
   prop("productsFailureMessage")
 );
-
 export const getOneProduct = createSelector(getSlice, prop("product"));
 export const getOneProductLoading = createSelector(
   getSlice,
@@ -118,7 +118,6 @@ export const getOneProductFailure = createSelector(
   getSlice,
   prop("productFailureMessage")
 );
-
 export const getLogin = createSelector(getSlice, prop("loginData"));
 export const getLoginLoading = createSelector(getSlice, prop("loginLoading"));
 export const getLoginFailure = createSelector(
@@ -127,16 +126,16 @@ export const getLoginFailure = createSelector(
 );
 export const getCart = createSelector(getSlice, prop("cart"));
 
+export const getAddToCart = createSelector(getSlice, prop("addToCart"));
+export const getAddToCartFailure = createSelector(getSlice, prop("addToCartFailureMessage"));
+
+export const getRemoveFromCart = createSelector(getSlice, prop("removeFromCart"));
+export const getRemoveFromCartFailure = createSelector(getSlice, prop("removeFromCartFailureMessage"));
 export const getCategories = createSelector(getSlice, prop("category"));
-
 export const getReviews = createSelector(getSlice, prop("reviews"));
-
 export const getorders = createSelector(getSlice, prop("Orders"));
-
 export const getUserDetails = createSelector(getSlice, prop("getUser"));
-
 export const getUserOrders = createSelector(getSlice, prop("userOrders"));
-
 export const getSearchCategory = createSelector(
   getSlice,
   prop("searchCategory")
@@ -148,7 +147,6 @@ export const setLogin = (value) => (dispatch) => {
     loginData: defaultTo("", value),
   });
 };
-
 export const setSearchCategory = (value) => (dispatch) => {
   dispatch({
     type: ACTIONS.SET_SEARCH_CATEGORY,
@@ -196,8 +194,8 @@ export const handleLogin = (data, address) => async (dispatch) => {
   dispatch({
     type: LOGIN_ACTIONS.LOGIN_REQUEST,
   });
+  const loginData = await authUserApi(data, address);
   try {
-    const loginData = await registerUser(data, address);
     dispatch({
       type: LOGIN_ACTIONS.LOGIN_SUCCESS,
       loginData: loginData.data.token,
@@ -205,7 +203,7 @@ export const handleLogin = (data, address) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGIN_ACTIONS.LOGIN_FAILED,
-      error: error,
+      error: loginData,
     });
   }
 };
@@ -233,10 +231,10 @@ export const handleAddToCart = (id, quantity) => async (dispatch) => {
     type: ACTIONS.ADD_TO_CART_REQUEST,
   });
   try {
-    const data = await addToCartApi(id, quantity);
+    const response = await addToCartApi(id, quantity);
     dispatch({
       type: ACTIONS.ADD_TO_CART_SUCCESS,
-      data,
+      data:response.data,
     });
   } catch (error) {
     dispatch({
@@ -251,7 +249,7 @@ export const handleRemoveFromCart = (id) => async (dispatch) => {
     type: ACTIONS.REMOVE_FROM_CART_REQUEST,
   });
   try {
-    const data = await removeFromCart(id);
+    const data = await removeFromCartApi(id);
     dispatch({
       type: ACTIONS.REMOVE_FROM_CART_SUCCESS,
       data,
@@ -269,7 +267,7 @@ export const handleAddCategory = (data) => async (dispatch) => {
     type: ACTIONS.ADD_CATEGORY_REQUEST,
   });
   try {
-    const response = await addCategory(data.Category, data["Sub category"]);
+    const response = await addCategoryApi(data.Category, data["Sub category"]);
     dispatch({
       type: ACTIONS.ADD_CATEGORY_SUCCESS,
       data: response,
@@ -287,7 +285,7 @@ export const handleDeleteAccount = (id) => async (dispatch) => {
     type: ACTIONS.DELETE_ACCOUNT_REQUEST,
   });
   try {
-    const response = await deleteAccount(id);
+    const response = await deleteAccountApi(id);
     dispatch({
       type: ACTIONS.DELETE_ACCOUNT_SUCCESS,
       data: response,
@@ -412,8 +410,8 @@ export const handleGetUser = () => async (dispatch) => {
   dispatch({
     type: ACTIONS.GET_USER_REQUEST,
   });
+  const response = await getUserApi();
   try {
-    const response = await getUserApi();
     dispatch({
       type: ACTIONS.GET_USER_SUCCESS,
       data: response,
@@ -421,7 +419,7 @@ export const handleGetUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ACTIONS.GET_USER_FAILED,
-      error: error,
+      error: response,
     });
   }
 };
@@ -430,8 +428,8 @@ export const handleUpdateUser = (data) => async (dispatch) => {
   dispatch({
     type: ACTIONS.UPDATE_USER_REQUEST,
   });
+  const response = await updateUserApi(data);
   try {
-    const response = await updateUserApi(data);
     dispatch({
       type: ACTIONS.UPDATE_USER_SUCCESS,
       data: response,
@@ -439,7 +437,7 @@ export const handleUpdateUser = (data) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ACTIONS.UPDATE_USER_FAILED,
-      error: error,
+      error: response,
     });
   }
 };
@@ -534,6 +532,7 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         loginData: action.loginData,
         loginLoading: false,
+        loginFailureMessage: "",
       };
     case LOGIN_ACTIONS.LOGIN_FAILED: {
       return {
@@ -576,6 +575,7 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         addToCart: action.data,
         addToCartLoading: false,
+        addToCartFailureMessage:{}
       };
     case ACTIONS.ADD_TO_CART_FAILED: {
       return {
@@ -596,11 +596,13 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         removeFromCart: action.data,
         removeFromCartLoading: false,
+        removeFromCartFailureMessage:{}
       };
     case ACTIONS.REMOVE_FROM_CART_FAILED: {
       return {
         ...state,
         removeFromCartLoading: false,
+        removeFromCart:{},
         removeFromCartFailureMessage: action.error,
       };
     }

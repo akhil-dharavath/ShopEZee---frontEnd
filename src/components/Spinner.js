@@ -8,7 +8,7 @@ export default function CircularIndeterminate() {
       sx={{
         display: "flex",
         height: "100vh",
-        widht: "100vw",
+        widht: "100%",
         justifyContent: "center",
         alignItems: "center",
       }}

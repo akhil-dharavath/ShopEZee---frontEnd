@@ -13,7 +13,7 @@ a {
 .offers {
   background: url("./assets/images/home_background.jpg") no-repeat fixed;
   height: 80vh;
-  width: 100vw;
+  width: 100%;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -189,7 +189,7 @@ a {
 .limitedOffer {
   background: url("./assets/images/limtedOffer.jpeg") no-repeat fixed;
   height: 80vh;
-  width: 95vw;
+  width: 95%;
   margin: auto;
   background-size: cover;
   background-position: right;
@@ -199,7 +199,7 @@ a {
 }
 
 .limitedOffer::before {
-  width: 95vw;
+  width: 95%;
 }
 
 .limitedOffer h1 {
@@ -231,7 +231,7 @@ a {
 }
 
 .right-nav {
-  width: 100vw;
+  width: 100%;
   height: 60vh;
 }
 .right-nav::before {
@@ -330,7 +330,7 @@ a {
   background-size: cover;
   background-position: top center;
   height: 300px;
-  width: 100vw;
+  width: 100%;
   margin: 40px 0px;
 }
 

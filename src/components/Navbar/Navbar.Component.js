@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import SimpleDialog from "../CartSidebar";
 import { Badge } from "@mui/material";
 import { isEmpty } from "ramda";
+import { name_transparant } from "../../routes/ImgRouters";
 
 function BasicNavbar({ userDetails, handleGetUser }) {
   const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ function BasicNavbar({ userDetails, handleGetUser }) {
   };
 
   useEffect(() => {
-    handleGetUser();
+    localStorage.getItem("token") && handleGetUser();
     // eslint-disable-next-line
   }, []);
 
@@ -38,9 +39,20 @@ function BasicNavbar({ userDetails, handleGetUser }) {
         data-bs-theme="dark"
       >
         <Container fluid>
-          <Navbar.Brand href="/" className="text-white">
+          {/*<Navbar.Brand href="/" className="text-white">
             ShopEZee
-          </Navbar.Brand>
+          </Navbar.Brand>*/}
+          <Link to={"/"}>
+            <img
+              src={name_transparant}
+              alt="logo"
+              style={{
+                height: 50,
+                filter: "invert(100%)",
+                margin: "0px 30px 0px 0px",
+              }}
+            />
+          </Link>
           <Navbar.Toggle
             aria-controls={`offcanvasNavbar-expand-lg`}
             onClick={() => setActive(!active)}
@@ -109,12 +121,12 @@ function BasicNavbar({ userDetails, handleGetUser }) {
                   </Link>
                 ) : (
                   <>
-                  <Link to="/your-account" className="hide_mobile">
-                    <PersonIcon />
-                  </Link>
-                  <Link to="/your-account">
-                    <p className="show_mobile">VIEW PROFILE</p>
-                  </Link>
+                    <Link to="/your-account" className="hide_mobile">
+                      <PersonIcon />
+                    </Link>
+                    <Link to="/your-account">
+                      <p className="show_mobile">VIEW PROFILE</p>
+                    </Link>
                   </>
                 )}
               </Nav>

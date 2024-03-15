@@ -2,43 +2,63 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../assets/styles/loginPage.css";
+import { useSnackbar } from "notistack";
 
-const Register = ({ login, handleLogin }) => {
+const Register = ({ login, handleLogin, loginFailure }) => {
+  // text fields
   const [details, setDetails] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  // updating text fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
   };
-  const route = useLocation();
-  const address = route.pathname.slice(6);
-  const navigate = useNavigate();
+
+  // get address whether login or register
+  const address = useLocation().pathname.slice(6);
+  const navigate = useNavigate(); // navigate
+
+  // import enqueueSnackbar for showing error message
+  const { enqueueSnackbar } = useSnackbar();
+
+  // on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (details.password === details.confirmPassword) {
-      // console.log("this data can be created");
-      handleLogin(details, address);
+    const { username, email, password, confirmPassword } = details;
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      enqueueSnackbar("Please enter required fields!", { variant: "error" }); // trigger when empty
+      return;
+    }
+    if (password === confirmPassword) {
+      handleLogin(details, address); // send register details to api including address
     } else {
-      alert("passwords doesnot match");
-      // console.log("passwords doesnot match");
+      enqueueSnackbar("passwords are not matched!", { variant: "error" }); // passwords not matched
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
 
   useEffect(() => {
     if (login && login !== "") {
       localStorage.setItem("token", login);
-      navigate("/");
+      navigate("/"); // if register is successful navigate to Home Page
     }
     // eslint-disable-next-line
   }, [login]);
+
+  useEffect(() => {
+    loginFailure !== "" &&
+      enqueueSnackbar(loginFailure.response.data.message, { variant: "error" }); // error while registering
+    // eslint-disable-next-line
+  }, [loginFailure]);
 
   return (
     <Container>

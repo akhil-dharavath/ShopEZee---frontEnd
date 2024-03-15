@@ -6,8 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IconButton, MenuItem, Select } from "@mui/material";
-import DoneIcon from "@mui/icons-material/Done";
+import OrderRow from "../../components/OrderRow";
 
 const Orders = ({
   admin,
@@ -16,7 +15,6 @@ const Orders = ({
   userOrders,
   fetchUserOrders,
 }) => {
-  
   useEffect(() => {
     if (admin) {
       fetchUserOrders();
@@ -47,7 +45,7 @@ const Orders = ({
               <TableCell width="25%">Product</TableCell>
               <TableCell width="10%">Price</TableCell>
               <TableCell width="10%">Quantity</TableCell>
-              <TableCell width="10%">Subtotal</TableCell>
+              <TableCell width="10%">Sub Total</TableCell>
               <TableCell width="25%" align="center">
                 Status
               </TableCell>
@@ -56,38 +54,7 @@ const Orders = ({
           <TableBody>
             {orderss.length > 0 &&
               orderss.map((order) => (
-                <TableRow
-                  key={order._id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>
-                    <img src={order.image} alt="login" width={100} />
-                  </TableCell>
-                  <TableCell>{order.name}</TableCell>
-                  <TableCell>{order.price}</TableCell>
-                  <TableCell align="center">1</TableCell>
-                  <TableCell>{order.price * order.quantity}</TableCell>
-                  <TableCell>
-                    {admin ? (
-                      <div className="d-flex flex-nowrap justify-content-evenly">
-                        <Select
-                          name="category"
-                          defaultValue={order.status}
-                          size="small"
-                        >
-                          <MenuItem value="Pending">Pending</MenuItem>
-                          <MenuItem value="Shipped">Shipped</MenuItem>
-                          <MenuItem value="Delivered">Disabled</MenuItem>
-                        </Select>
-                        <IconButton sx={{ width: "auto" }}>
-                          <DoneIcon />
-                        </IconButton>
-                      </div>
-                    ) : (
-                      <div className="text-center">{order.status}</div>
-                    )}
-                  </TableCell>
-                </TableRow>
+                <OrderRow key={order._id} order={order} admin={admin} />
               ))}
           </TableBody>
         </Table>

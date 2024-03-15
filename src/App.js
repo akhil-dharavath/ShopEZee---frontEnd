@@ -13,13 +13,13 @@
 // import PageNotFound from "./screens/PageNotFound";
 // import ViewProfile from "./screens/ViewProfile";
 // import ScrollToTop from "./components/ScrollToTop";
-import Routing from './routes'
+import Routing from "./routes";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // const [showFooter,setShowFooter]=useState(true);
-  
+
   return (
     <>
       {/* <Router>
@@ -42,7 +42,7 @@ function App() {
         </Routes>
         {showFooter && <Footer />}
       </Router> */}
-      <Routing/>
+      <Routing />
     </>
   );
 }

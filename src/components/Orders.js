@@ -46,7 +46,7 @@ const Orders = ({ admin }) => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>
-                  <img src={log_in} alt="login" width={100} />
+                  {/* <img src={log_in} alt="login" width={100} /> */}
                 </TableCell>
                 <TableCell>Product</TableCell>
                 <TableCell>Price</TableCell>

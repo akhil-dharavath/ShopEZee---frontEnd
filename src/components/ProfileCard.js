@@ -5,7 +5,7 @@ const ProfileCard = ({ image, title, description, link, onClick }) => {
   return (
     <Link to={link} onClick={onClick} className="account-card">
       <div>
-        <img src={image} alt="login" style={{ width: 70 }} />
+        <img src={image} alt={title} style={{ width: 70 }} />
       </div>
       <div className="content">
         <h5 className="text-dark">{title}</h5>

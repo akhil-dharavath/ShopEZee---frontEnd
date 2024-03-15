@@ -12,6 +12,8 @@ import {
   Typography,
 } from "@mui/material";
 import Spinner from "../../components/Spinner";
+import { enqueueSnackbar } from "notistack";
+import { isEmpty } from "ramda";
 
 function ProductPage({
   fetchOneProduct,
@@ -24,6 +26,8 @@ function ProductPage({
   handlePostReview,
   handleGetReviews,
   review: productReview,
+  addToCart: addedToCart,
+  addToCartFailure,
 }) {
   const [rate, setRate] = useState(false);
   const [rating, setRating] = useState(0);
@@ -64,6 +68,19 @@ function ProductPage({
     setRate(false);
   };
 
+  useEffect(() => {
+    !isEmpty(addedToCart) &&
+      enqueueSnackbar("Product added to cart", { variant: "success" });
+    // !isEmpty(addToCartFailure) && enqueueSnackbar()
+    // console.log(addToCartFailure);
+  }, [addedToCart]);
+
+  useEffect(() => {
+    !isEmpty(addToCartFailure) &&
+      enqueueSnackbar(addToCartFailure.response.data.message, {
+        variant: "error",
+      });
+  },[addToCartFailure]);
   if (productLoading) {
     return <Spinner />;
   }

@@ -8,7 +8,7 @@ const FiltersSidebar = ({ fullScreen, open, setOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(search);
+    // console.log(search);
   };
 
   const [value, setValue] = React.useState([0, 100]);

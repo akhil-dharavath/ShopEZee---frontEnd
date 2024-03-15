@@ -48,7 +48,7 @@ p {
   width: 50%;
   height: 100%;
   background-color: #e5e5e5;
-  padding: 10rem 4rem 4rem 4rem;
+  padding: 8rem 4rem 4rem 4rem;
 }
 
 .product-spec {
@@ -143,13 +143,13 @@ p {
 
   .product-right {
     width: 60%;
-    padding: 10rem 2rem 8rem 2rem;
+    padding: 7rem 2rem 8rem 2rem;
   }
 }
 
 @media (max-width: 900px) {
   .product-right {
-    padding: 10rem 2rem 8rem 2rem;
+    padding: 6rem 2rem 8rem 2rem;
   }
 }
 

@@ -1,3 +1,7 @@
+export const logo_white = require("../assets/images/logo_white.png");
+export const logo_transparant = require("../assets/images/logo_transparent.png");
+export const name_white = require("../assets/images/name_white.png");
+export const name_transparant = require("../assets/images/name_transparent.png");
 export const about_us = require("../assets/images/about-us.jpeg");
 export const about_1 = require("../assets/images/about1.jpeg");
 export const address = require("../assets/images/address.jpeg");

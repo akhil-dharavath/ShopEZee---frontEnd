@@ -1,6 +1,7 @@
 import axios from "axios";
+// import { authtoken } from "./_constants";
 
-const addToCart = async (data) => {
+export const contactUsApi = async (data) => {
   const response = await axios({
     headers: { "content-type": "application/json" },
     method: "POST",
@@ -10,4 +11,3 @@ const addToCart = async (data) => {
   return response.data;
 };
 
-export default addToCart;
