@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Dialog, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterComponent from "../../components/Filter";
@@ -15,12 +15,6 @@ const FiltersSidebar = ({
     fetchCategories();
     // eslint-disable-next-line
   }, []);
-
-  const [value, setValue] = useState([0, 100]);
-
-  const handleChange = (_, newValue) => {
-    setValue(newValue);
-  };
 
   const dialogStyle = {
     position: "absolute",
@@ -50,16 +44,12 @@ const FiltersSidebar = ({
           </IconButton>
           <FilterComponent
             setSearch={setSearchCategory}
-            value={value}
-            handleChange={handleChange}
             categories={categories}
           />
         </Dialog>
       ) : (
         <FilterComponent
           setSearch={setSearchCategory}
-          value={value}
-          handleChange={handleChange}
           categories={categories}
         />
       )}

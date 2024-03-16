@@ -51,9 +51,11 @@ function ProductPage({
     // eslint-disable-next-line
   }, []);
 
+  const [show, setShow] = useState(false);
   const addToCart = async (id, qty) => {
     await handleAddToCart(id, qty);
     await fetchCart();
+    setShow(true);
   };
 
   const placeOrder = async (qty, id) => {
@@ -69,18 +71,19 @@ function ProductPage({
   };
 
   useEffect(() => {
-    !isEmpty(addedToCart) &&
+    show &&
+      !isEmpty(addedToCart) &&
+      isEmpty(addToCartFailure) &&
       enqueueSnackbar("Product added to cart", { variant: "success" });
-    // !isEmpty(addToCartFailure) && enqueueSnackbar()
-    // console.log(addToCartFailure);
-  }, [addedToCart]);
 
-  useEffect(() => {
-    !isEmpty(addToCartFailure) &&
+    show &&
+      !isEmpty(addToCartFailure) &&
       enqueueSnackbar(addToCartFailure.response.data.message, {
         variant: "error",
       });
-  },[addToCartFailure]);
+    // eslint-disable-next-line
+  }, [show]);
+
   if (productLoading) {
     return <Spinner />;
   }

@@ -9,7 +9,6 @@ import { authUserApi } from "../../api/userAuthentication";
 import { getCartApi } from "../../api/shoppingCart";
 import { addToCartApi } from "../../api/shoppingCart";
 import { removeFromCartApi } from "../../api/shoppingCart";
-import { addCategoryApi } from "../../api/adminFeatures";
 import { userOrdersApi } from "../../api/orderManagement";
 import { deleteAccountApi } from "../../api/userProfileManagement";
 import { addProductApi } from "../../api/adminFeatures";
@@ -20,7 +19,6 @@ import { contactUsApi } from "../../api/contactUs";
 import { postReviewApi } from "../../api/reviewsAndRatings";
 import { getReviewsApi } from "../../api/reviewsAndRatings";
 import { getUserApi } from "../../api/userProfileManagement";
-import { updateUserApi } from "../../api/userProfileManagement";
 
 const initialState = {
   products: [],
@@ -127,15 +125,34 @@ export const getLoginFailure = createSelector(
 export const getCart = createSelector(getSlice, prop("cart"));
 
 export const getAddToCart = createSelector(getSlice, prop("addToCart"));
-export const getAddToCartFailure = createSelector(getSlice, prop("addToCartFailureMessage"));
+export const getAddToCartFailure = createSelector(
+  getSlice,
+  prop("addToCartFailureMessage")
+);
 
-export const getRemoveFromCart = createSelector(getSlice, prop("removeFromCart"));
-export const getRemoveFromCartFailure = createSelector(getSlice, prop("removeFromCartFailureMessage"));
+export const getRemoveFromCart = createSelector(
+  getSlice,
+  prop("removeFromCart")
+);
+export const getRemoveFromCartFailure = createSelector(
+  getSlice,
+  prop("removeFromCartFailureMessage")
+);
 export const getCategories = createSelector(getSlice, prop("category"));
 export const getReviews = createSelector(getSlice, prop("reviews"));
 export const getorders = createSelector(getSlice, prop("Orders"));
 export const getUserDetails = createSelector(getSlice, prop("getUser"));
 export const getUserOrders = createSelector(getSlice, prop("userOrders"));
+
+export const getPostReview = createSelector(
+  getSlice,
+  prop("postReview")
+);
+export const getPostReviewFailure = createSelector(
+  getSlice,
+  prop("postReviewFailureMessage")
+);
+
 export const getSearchCategory = createSelector(
   getSlice,
   prop("searchCategory")
@@ -234,7 +251,7 @@ export const handleAddToCart = (id, quantity) => async (dispatch) => {
     const response = await addToCartApi(id, quantity);
     dispatch({
       type: ACTIONS.ADD_TO_CART_SUCCESS,
-      data:response.data,
+      data: response.data,
     });
   } catch (error) {
     dispatch({
@@ -257,24 +274,6 @@ export const handleRemoveFromCart = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ACTIONS.REMOVE_FROM_CART_FAILED,
-      error: error,
-    });
-  }
-};
-
-export const handleAddCategory = (data) => async (dispatch) => {
-  dispatch({
-    type: ACTIONS.ADD_CATEGORY_REQUEST,
-  });
-  try {
-    const response = await addCategoryApi(data.Category, data["Sub category"]);
-    dispatch({
-      type: ACTIONS.ADD_CATEGORY_SUCCESS,
-      data: response,
-    });
-  } catch (error) {
-    dispatch({
-      type: ACTIONS.ADD_CATEGORY_FAILED,
       error: error,
     });
   }
@@ -410,8 +409,8 @@ export const handleGetUser = () => async (dispatch) => {
   dispatch({
     type: ACTIONS.GET_USER_REQUEST,
   });
-  const response = await getUserApi();
   try {
+    const response = await getUserApi();
     dispatch({
       type: ACTIONS.GET_USER_SUCCESS,
       data: response,
@@ -419,25 +418,7 @@ export const handleGetUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ACTIONS.GET_USER_FAILED,
-      error: response,
-    });
-  }
-};
-
-export const handleUpdateUser = (data) => async (dispatch) => {
-  dispatch({
-    type: ACTIONS.UPDATE_USER_REQUEST,
-  });
-  const response = await updateUserApi(data);
-  try {
-    dispatch({
-      type: ACTIONS.UPDATE_USER_SUCCESS,
-      data: response,
-    });
-  } catch (error) {
-    dispatch({
-      type: ACTIONS.UPDATE_USER_FAILED,
-      error: response,
+      error: error,
     });
   }
 };
@@ -575,7 +556,7 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         addToCart: action.data,
         addToCartLoading: false,
-        addToCartFailureMessage:{}
+        addToCartFailureMessage: {},
       };
     case ACTIONS.ADD_TO_CART_FAILED: {
       return {
@@ -596,34 +577,14 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         removeFromCart: action.data,
         removeFromCartLoading: false,
-        removeFromCartFailureMessage:{}
+        removeFromCartFailureMessage: {},
       };
     case ACTIONS.REMOVE_FROM_CART_FAILED: {
       return {
         ...state,
         removeFromCartLoading: false,
-        removeFromCart:{},
+        removeFromCart: {},
         removeFromCartFailureMessage: action.error,
-      };
-    }
-
-    case ACTIONS.ADD_CATEGORY_REQUEST: {
-      return {
-        ...state,
-        addCategoryLoading: true,
-      };
-    }
-    case ACTIONS.ADD_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        addCategory: action.data,
-        addCategoryLoading: false,
-      };
-    case ACTIONS.ADD_CATEGORY_FAILED: {
-      return {
-        ...state,
-        addCategoryLoading: false,
-        addCategoryFailureMessage: action.error,
       };
     }
 
@@ -758,6 +719,7 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         postReview: action.data,
         postReviewLoading: false,
+        postReviewFailureMessage: {},
       };
     case ACTIONS.POST_REVIEW_FAILED: {
       return {
@@ -804,26 +766,6 @@ const homeRuducer = (state = initialState, { type, ...action } = {}) => {
         ...state,
         getUserLoading: false,
         getUserFailureMessage: action.error,
-      };
-    }
-
-    case ACTIONS.UPDATE_USER_REQUEST: {
-      return {
-        ...state,
-        updateUserLoading: true,
-      };
-    }
-    case ACTIONS.UPDATE_USER_SUCCESS:
-      return {
-        ...state,
-        updateUser: action.data,
-        updateUserLoading: false,
-      };
-    case ACTIONS.UPDATE_USER_FAILED: {
-      return {
-        ...state,
-        userOrdersLoading: false,
-        userOrdersFailureMessage: action.error,
       };
     }
 

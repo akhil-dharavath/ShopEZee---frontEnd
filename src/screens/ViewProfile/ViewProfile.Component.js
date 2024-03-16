@@ -14,17 +14,19 @@ import {
 import ProfileCard from "../../components/ProfileCard";
 import ProfileDialog from "../../components/ProfileDialog";
 import { isEmpty } from "ramda";
+import { updateUserApi } from "../../api/userProfileManagement";
+import { enqueueSnackbar } from "notistack";
+import { addCategoryApi } from "../../api/adminFeatures";
 
 const ViewProfile = ({
   setLogin,
-  handleAddCategory,
   handleDeleteAccount,
   handleAddProduct,
   fetchProducts,
   getCategories,
   fetchCategories,
-  handleUpdateUser,
   getUserDetails,
+  handleGetUser,
 }) => {
   const [openSecurity, setOpenSecurity] = useState(false);
   const [addProducts, setAddProducts] = useState(false);
@@ -37,11 +39,19 @@ const ViewProfile = ({
   const handleLogout = () => {
     setLogin(undefined);
     localStorage.removeItem("token");
+    navigate('/auth/login');
   };
 
-  const handleSubmitCategory = (data) => {
+  const handleSubmitCategory = async (data) => {
     setCategory(false);
-    handleAddCategory(data);
+    const response = await addCategoryApi(data.Category, data["Sub category"]);
+    if (response.data) {
+      enqueueSnackbar("Successfully category has been added", {
+        variant: "success",
+      });
+    } else {
+      enqueueSnackbar(response.response.data.message, { variant: "error" });
+    }
   };
 
   const handleSubmitDelete = () => {
@@ -49,12 +59,14 @@ const ViewProfile = ({
     setDeleteAccount(false);
     localStorage.removeItem("token");
     navigate("/auth/login");
+    enqueueSnackbar("Your account has been deleted", { variant: "success" });
   };
 
   const addProduct = async (data) => {
     await handleAddProduct(data, getCategories);
     await fetchProducts();
     setAddProducts(false);
+    enqueueSnackbar("Product added successfully!", { variant: "success" });
   };
 
   const callCategories = async () => {
@@ -66,9 +78,6 @@ const ViewProfile = ({
     // eslint-disable-next-line
   }, [addProducts]);
 
-  // console.log(getUserDetails.email, getUserDetails.username);
-  // const Username = !isEmpty(getUserDetails) ? getUserDetails.username : "";
-  // const Email = !isEmpty(getUserDetails) ? getUserDetails.email : "";
   const [userDetails, setuserDetails] = useState({
     Email: getUserDetails.email,
     Username: getUserDetails.username,
@@ -108,6 +117,22 @@ const ViewProfile = ({
     setAddAddress(false);
     setDeleteAccount(false);
     setLogout(false);
+  };
+
+  const updateUser = async () => {
+    if (userDetails["Confirm password"] !== userDetails.Password) {
+      enqueueSnackbar("Passwords desn't match", { variant: "error" });
+      return;
+    }
+    const response = await updateUserApi(userDetails);
+    if (response.data) {
+      localStorage.setItem("token", response.data.token);
+      enqueueSnackbar("Successfully your profile has been updated", {
+        variant: "success",
+      });
+    } else {
+      enqueueSnackbar(response.response.data.message, { variant: "error" });
+    }
   };
 
   return (
@@ -210,7 +235,7 @@ const ViewProfile = ({
         ]}
         buttons={[
           { id: "1", name: "cancel", color: "error", click: handleClose },
-          { id: "2", name: "save", color: "success", click: handleClose },
+          { id: "2", name: "save", color: "success", click: updateUser },
         ]}
         open={openSecurity}
       />

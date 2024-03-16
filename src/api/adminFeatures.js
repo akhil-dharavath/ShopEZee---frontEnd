@@ -3,13 +3,17 @@ import { authtoken } from "./_constants";
 
 export const addCategoryApi = async (name, description) => {
   //   const authtoken=getAuthtoken()
-  const response = await axios({
-    headers: { "content-type": "application/json", authtoken },
-    method: "POST",
-    url: `${process.env.REACT_APP_URL}/admin/create-category`,
-    data: JSON.stringify({ name, description }),
-  });
-  return response.data;
+  try {
+    const response = await axios({
+      headers: { "content-type": "application/json", authtoken },
+      method: "POST",
+      url: `${process.env.REACT_APP_URL}/admin/create-category`,
+      data: JSON.stringify({ name, description }),
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
 
 export const addProductApi = async (data, categories) => {

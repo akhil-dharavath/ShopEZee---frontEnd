@@ -7,14 +7,12 @@ import {
   getLoginFailure,
   handleLogin,
   setLogin,
-  handleAddCategory,
   handleDeleteAccount,
   handleAddProduct,
   fetchProducts,
   getCategories,
   fetchCategories,
   handleGetUser,
-  handleUpdateUser,
   getUserDetails,
 } from "../../redux/reducers/homeReducer";
 
@@ -29,13 +27,11 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = {
   handleLogin,
   setLogin,
-  handleAddCategory,
   handleDeleteAccount,
   handleAddProduct,
   fetchProducts,
   fetchCategories,
   handleGetUser,
-  handleUpdateUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
