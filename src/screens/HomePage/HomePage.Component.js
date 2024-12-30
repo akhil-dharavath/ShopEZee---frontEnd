@@ -31,7 +31,12 @@ const Home = ({ productsLoading, products, fetchProducts, handleGetUser }) => {
 
   useEffect(() => {
     fetchProducts();
-    localStorage.getItem('token') && handleGetUser();
+    localStorage.getItem("token") && handleGetUser();
+    if (!localStorage.getItem("loaded")) {
+      window.location.reload();
+      localStorage.setItem("loaded", true);
+    }
+    return () => localStorage.removeItem("loaded");
     // eslint-disable-next-line
   }, []);
 

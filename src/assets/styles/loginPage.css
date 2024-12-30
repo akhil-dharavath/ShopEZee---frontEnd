@@ -68,4 +68,8 @@ form a:hover {
   .login-left {
     display: none;
   }
+
+  .log-sign-right{
+    width: 100%;
+  }
 }
