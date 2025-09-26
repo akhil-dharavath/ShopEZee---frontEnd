@@ -6,7 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 import GoogleIcon from "@mui/icons-material/Google";
 import { IconButton } from "@mui/material";
-
+ 
 const Footer = () => {
   return (
     <div className="footer">
