@@ -44,8 +44,8 @@ const Footer = () => {
       </div>
       <div className="second-footer">
         <div className="content">
-          <p>Copyright © 2023 ShopEZee. Powered by ShopEZee.</p>
-          <p>Developed and disgned by Dharavath Akhil.</p>
+          <p>Copyright © 2025 ShopEZee. Powered by ShopEZee.</p>
+          // <p>Developed and disgned by Dharavath Akhil.</p>
         </div>
         <div className="icons d-flex justify-content-center">
           <IconButton
