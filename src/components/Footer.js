@@ -6,7 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 import GoogleIcon from "@mui/icons-material/Google";
 import { IconButton } from "@mui/material";
- 
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -45,7 +45,7 @@ const Footer = () => {
       <div className="second-footer">
         <div className="content">
           <p>Copyright © 2025 ShopEZee. Powered by ShopEZee.</p>
-          // <p>Developed and disgned by Dharavath Akhil.</p>
+          
         </div>
         <div className="icons d-flex justify-content-center">
           <IconButton
